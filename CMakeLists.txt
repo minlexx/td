@@ -21,6 +21,7 @@ endif()
 
 option(TD_ENABLE_JNI "Use \"ON\" to enable JNI-compatible TDLib API.")
 option(TD_ENABLE_DOTNET "Use \"ON\" to enable generation of C++/CLI or C++/CX TDLib API bindings.")
+option(BUILD_TESTING "Build tests and benchmarks" OFF)
 
 if (TD_ENABLE_DOTNET AND (CMAKE_VERSION VERSION_LESS "3.1.0"))
   message(FATAL_ERROR "CMake 3.1.0 or higher is required. You are running version ${CMAKE_VERSION}.")
@@ -268,10 +269,14 @@ add_subdirectory(sqlite)
 
 add_subdirectory(tddb)
 
-add_subdirectory(test)
+if (BUILD_TESTING)
+  add_subdirectory(test)
+endif()
 
 if (NOT CMAKE_CROSSCOMPILING)
-  add_subdirectory(benchmark)
+  if (BUILD_TESTING)
+    add_subdirectory(benchmark)
+  endif()
 endif()
 
 
