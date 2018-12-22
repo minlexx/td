@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
 project(TDLib VERSION 1.3.0 LANGUAGES CXX C)
 
+include(FeatureSummary)
+
 # Prevent in-source build
 get_filename_component(TD_REAL_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" REALPATH)
 get_filename_component(TD_REAL_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}" REALPATH)
@@ -804,3 +806,6 @@ write_basic_package_version_file("TdConfigVersion.cmake"
 install(FILES "TdConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/TdConfigVersion.cmake"
   DESTINATION lib/cmake/Td
 )
+
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
