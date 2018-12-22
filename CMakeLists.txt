@@ -807,5 +807,8 @@ install(FILES "TdConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/TdConfigVersion.cmak
   DESTINATION lib/cmake/Td
 )
 
+ # Add SOVERSION to shared libraries
+ set_property(TARGET tdclient PROPERTY SOVERSION ${TDLib_VERSION})
+ set_property(TARGET tdjson PROPERTY SOVERSION ${TDLib_VERSION})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
