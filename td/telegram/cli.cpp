@@ -661,7 +661,8 @@ class CliClient final : public Actor {
       add_history(line);
     }
     instance_->add_cmd(line);
-    rl_free(line);
+    // rl_free(line); // SFOS older readline does not have rl_free() ?
+    free(line);
   }
 #endif
 
